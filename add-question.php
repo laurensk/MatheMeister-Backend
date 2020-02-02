@@ -34,6 +34,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="/css/global.css">
         <link rel="stylesheet" href="/css/view-questions.css">
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -83,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </fieldset>
                 <br>
                 <fieldset>
-                    <button class="btn btn-primary" name="submit" type="submit" id="contact-submit" data-submit="...Sending" value="addQuestion">Add question</button>
+                    <button class="btn btn-primary" name="submit" type="submit" id="contact-submit" data-submit="...Sending" value="addQuestion">Add Question</button>
                 </fieldset>
                 <span><br><br><?php echo $err; ?></span>
             </form>
