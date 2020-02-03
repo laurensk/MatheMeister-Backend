@@ -8,14 +8,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 require_once "../auth/dbconfig.php";
 
-$que_lvl = urldecode(mysqli_real_escape_string($conn, $_GET["que_lvl"]));
-$que_question = urldecode(mysqli_real_escape_string($conn, $_GET["que_question"]));
-$que_correctAnswer = urldecode(mysqli_real_escape_string($conn, $_GET["que_correctAnswer"]));
-$que_wrongAnswerOne = urldecode(mysqli_real_escape_string($conn, $_GET["que_wrongAnswerOne"]));
-$que_wrongAnswerTwo = urldecode(mysqli_real_escape_string($conn, $_GET["que_wrongAnswerTwo"]));
-$que_wrongAnswerThree = urldecode(mysqli_real_escape_string($conn, $_GET["que_wrongAnswerThree"]));
+$que_lvl = mysqli_real_escape_string($conn, $_POST["level"]);
+$que_question = mysqli_real_escape_string($conn, $_POST["question"]);
+$que_correctAnswer = mysqli_real_escape_string($conn, $_POST["correctAnswer"]);
+$que_wrongAnswerOne = mysqli_real_escape_string($conn, $_POST["wrongAnswerOne"]);
+$que_wrongAnswerTwo = mysqli_real_escape_string($conn, $_POST["wrongAnswerTwo"]);
+$que_wrongAnswerThree = mysqli_real_escape_string($conn, $_POST["wrongAnswerThree"]);
 
-$sth = "INSERT INTO `mm_questions` (que_level, que_question, que_correctAnswer, que_wrongAnswerOne, que_wrongAnswerTwo, que_wrongAnswerThree) VALUES ('$que_lvl', '$que_question', '$que_correctAnswer', '$que_wrongAnswerOne', '$que_wrongAnswerTwo', '$que_wrongAnswerThree')";
+$sth = sprintf("INSERT INTO mm_questions set que_level='%s', que_question='%s', que_correctAnswer='%s', que_wrongAnswerOne='%s', que_wrongAnswerTwo='%s', que_wrongAnswerThree='%s'", $que_lvl, $que_question, $que_correctAnswer, $que_wrongAnswerOne, $que_wrongAnswerTwo, $que_wrongAnswerThree);
 
 if ($conn->query($sth) === TRUE) {
     exitAndBack();

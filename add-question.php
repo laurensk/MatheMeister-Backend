@@ -6,23 +6,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    if(empty(trim($_POST["level"])) && empty(trim($_POST["question"])) && empty(trim($_POST["correctAnswer"])) && empty(trim($_POST["wrongAnswerOne"])) && empty(trim($_POST["wrongAnswerTwo"])) && empty(trim($_POST["wrongAnswerThree"]))){
-        $error = "Please provide information for each field.";
-    } else {
-        $que_lvl = urlencode($_POST["level"]);
-        $que_question = urlencode($_POST["question"]);
-        $que_correctAnswer = urlencode($_POST["correctAnswer"]);
-        $que_wrongAnswerOne = urlencode($_POST["wrongAnswerOne"]);
-        $que_wrongAnswerTwo = urlencode($_POST["wrongAnswerTwo"]);
-        $que_wrongAnswerThree = urlencode($_POST["wrongAnswerThree"]);
-
-        header("location: helpers/question-adder.php?que_lvl=$que_lvl&que_question=$que_question&que_correctAnswer=$que_correctAnswer&que_wrongAnswerOne=$que_wrongAnswerOne&que_wrongAnswerTwo=$que_wrongAnswerTwo&que_wrongAnswerThree=$que_wrongAnswerThree");
-    }
-
-}
-
 ?>
 
 
@@ -45,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body>
         <div class="container">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action="helpers/question-adder.php" method="post">
                 <h3>MatheMeister Add Questions</h3>
                 <h4>Create a new MatheMeister question.</h4>
 

@@ -14,6 +14,7 @@ $username = $password = "";
 $username_err = $password_err = "";
  
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
  
     if(empty(trim($_POST["username"]))){
         $username_err = "I know that 1 + 1 is 2 but you must provide an username.";
@@ -110,15 +111,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       <h4>Please log in to manage MatheMeister questions.</h4>
                       <br>
                       <fieldset>
-                        <input name="username" placeholder="Username" type="text" tabindex="1" required autofocus>
+                        <input name="username" id="username" placeholder="Username" type="text" tabindex="1" required autofocus>
                       </fieldset>
                       <br>
                       <fieldset>
-                        <input name="password" placeholder="Password" type="password" tabindex="2" required>
+                        <input name="password" id="password" placeholder="Password" type="password" tabindex="2" required>
+                        <input type="hidden" name="hide" id="hide" />
                       </fieldset>
                       <br>
                       <fieldset>
-                        <button class="btn btn-primary" name="submit" type="submit" id="contact-submit" data-submit="...Sending" value="Login">Login</button>
+                        <input class="btn btn-primary" name="login" type="submit" value="Login"></input>
                       </fieldset>
                       <span><?php echo $username_err; ?></span>
                       <span><?php echo $password_err; ?></span>
