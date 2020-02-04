@@ -7,6 +7,7 @@ define('DB_NAME', 'u153590db7');
  
 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+mysqli_query($conn, "SET NAMES 'utf8'");
  
 
 if($conn === false){

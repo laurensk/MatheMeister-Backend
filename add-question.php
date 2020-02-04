@@ -28,7 +28,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </head>
     <body>
         <div class="container">
-            <form action="helpers/question-adder.php" method="post">
+            <form action="helpers/question-adder.php" method="post" accept-charset="UTF-8">
                 <h3>MatheMeister Add Questions</h3>
                 <h4>Create a new MatheMeister question.</h4>
 
