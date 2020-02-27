@@ -2,7 +2,7 @@
 
 $mode = $_GET["mode"];
 
-include('../auth/dbconfig.php');
+include('../db/dbconfig.php');
 
 // get ? questions for level ?
 if ($mode == 1) {

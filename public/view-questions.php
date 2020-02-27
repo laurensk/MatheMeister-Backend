@@ -63,7 +63,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <tr>
                 <?php
 
-                include("auth/dbconfig.php");
+                include("db/dbconfig.php");
                 
                 $result = mysqli_query($conn, "SELECT * FROM mm_questions ORDER BY que_level");
                 

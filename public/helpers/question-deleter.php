@@ -6,7 +6,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-require_once "../auth/dbconfig.php";
+require_once "../db/dbconfig.php";
 
 $que_id = $_GET["que_id"];
 

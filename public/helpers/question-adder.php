@@ -6,7 +6,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-require_once "../auth/dbconfig.php";
+require_once "../db/dbconfig.php";
 
 $que_lvl = mysqli_real_escape_string($conn, $_POST["level"]);
 $que_question = mysqli_real_escape_string($conn, $_POST["question"]);
