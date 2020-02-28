@@ -63,12 +63,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: view-questions.php");
                         } else{
                             
-                            $password_err = "1 + 1 is still 2 but the username or password is wrong. Sorry.";
+                            $password_err = "<br>not really... i mean, it's wrong...";
                         }
                     }
                 } else{
                     
-                    $username_err = "1 + 1 is still 2 but the username or password is wrong. Sorry.";
+                    $username_err = "<br>not really... i mean, it's wrong...";
                 }
             } else{
                 echo "I tried everything but a connection to the database couldn't be made.";
@@ -105,10 +105,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <body>
 
+            <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.php">MatheMeister</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="view-questions.php">Questions</a></li>
+      <li><a href="add-question.php">Add Question</a></li>
+      <li><a href="view-categories.php">Categories</a></li>
+      <li><a href="add-category.php">Add Category</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <?php
+    if($_SESSION["loggedin"] !== true) {
+        echo '<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+    } else {
+        echo '<li><a><span></span> '.$_SESSION["fullname"].'</a></li>
+        <li><a href="helpers/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
+    }
+    ?>
+    </ul>
+    </div>
+    </nav>
+
                 <div class="container">  
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                       <h3>MatheMeister Backend Login</h3>
-                      <h4>Please log in to manage MatheMeister questions.</h4>
+                      <h4>Please log in to manage MatheMeister.</h4>
                       <br>
                       <fieldset>
                         <input name="username" id="username" placeholder="Username" type="text" tabindex="1" required autofocus>

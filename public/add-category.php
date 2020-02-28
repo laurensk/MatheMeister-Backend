@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
 
 ?>
 
@@ -31,11 +35,11 @@ session_start();
     <a class="navbar-brand" href="index.php">MatheMeister</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
+      <li><a href="index.php">Home</a></li>
       <li><a href="view-questions.php">Questions</a></li>
       <li><a href="add-question.php">Add Question</a></li>
       <li><a href="view-categories.php">Categories</a></li>
-      <li><a href="add-category.php">Add Category</a></li>
+      <li class="active"><a href="add-category.php">Add Category</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php
@@ -51,11 +55,8 @@ session_start();
     </nav>
 
         <div class="container">
-            <h3>Home sweet home...</h3>
-            <h4>If you want to use the MatheMeister-App, you're kinda not right here... Sorry!</h4>
-            <?php if($_SESSION["loggedin"] !== true) {
-                echo '<br><h3>Please log in in order to manage MatheMeister.</h3><h4>Development creadentials: dev/nrlly</h4>';
-            } ?>
+            <h3>Here you should be able to create a category...</h3>
+            <h4>...but the developer is lazy!</h4>
         </div>
     </body>
 </html>

@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: index.php");
+    header("location: login.php");
     exit;
 }
 
@@ -29,17 +29,36 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
     </head>
     <body>
+
+    <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.php">MatheMeister</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="index.php">Home</a></li>
+      <li class="active"><a href="view-questions.php">Questions</a></li>
+      <li><a href="add-question.php">Add Question</a></li>
+      <li><a href="view-categories.php">Categories</a></li>
+      <li><a href="add-category.php">Add Category</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <?php
+    if($_SESSION["loggedin"] !== true) {
+        echo '<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+    } else {
+        echo '<li><a><span></span> '.$_SESSION["fullname"].'</a></li>
+        <li><a href="helpers/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
+    }
+    ?>
+    </ul>
+    </div>
+    </nav>
+
+
         <div class="container">
             <h3>MatheMeister Questions</h3>
             <h4>See all MatheMeister questions.</h4>
-
-            <div class="d-flex" style="float: right;">
-                <div class="ml-auto">
-                <div> <h5 style="display: inline-block;">Welcome, </h5> <h4 style="display: inline-block;"><?php echo $_SESSION["fullname"] ?></h4> <a style="display: inline-block;" class="btn btn-primary" href="helpers/logout.php" role="button">Logout</a> </div>
-                    
-                </div>
-            </div>
-
 
             <br>
             <a class="btn btn-primary" href="add-question.php" role="button">Add Question</a>
