@@ -24,7 +24,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <script src="js/deleteQuestion.js"></script>
+        <script src="js/deleteCategory.js"></script>
+        <script src="js/editCategory.js"></script>
 
     </head>
     <body>
@@ -54,9 +55,50 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
     </nav>
 
-        <div class="container">
-            <h3>Here you should see all categories...</h3>
-            <h4>...but the developer is lazy!</h4>
+    <div class="container">
+            <h3>MatheMeister Categories</h3>
+            <h4>See all MatheMeister categories.</h4>
+
+            <br>
+            <a class="btn btn-primary" href="add-category.php" role="button">Add Category</a>
+            <br>
+            <br>
+            <div>
+                <table class="table table-bordered">
+                <thead>
+                <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Questions</th>
+                <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <?php
+
+                include("db/dbconfig.php");
+                
+                $result = mysqli_query($conn, "SELECT * FROM mm_category ORDER BY cat_id");
+                
+                while($category = mysqli_fetch_array($result))
+                {
+                $categoryId = $category['cat_id'];
+
+                $qcSth = sprintf("SELECT que_id FROM mm_questions WHERE que_catId = %s", $categoryId);
+                $qcRes = $conn->query($qcSth);
+
+                echo"<td>".$category['cat_id']."</td>";
+                echo"<td>".$category['cat_name']."</td>";
+                echo"<td>".$qcRes->num_rows."</td>";
+                $categoryString = "\"".$category['cat_name']."\"";
+                echo"<td><button class='btn btn-primary' type='submit' onclick='editCategory(".$categoryId.", ".$categoryString.");'>Edit</button> <button class='btn btn-primary' type='submit' onclick='deleteCategory(".$categoryId.", ".$categoryString.", ".$qcRes->num_rows.");'>Delete</button> </td>";
+                echo "</tr>";
+                }
+                mysqli_close($conn);
+                ?>
+                </table>
+            </div>
         </div>
     </body>
 </html>

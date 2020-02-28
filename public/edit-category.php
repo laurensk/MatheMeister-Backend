@@ -24,8 +24,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <script src="js/deleteCategory.js"></script>
-
     </head>
     <body>
 
@@ -39,7 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="view-questions.php">Questions</a></li>
       <li><a href="add-question.php">Add Question</a></li>
       <li><a href="view-categories.php">Categories</a></li>
-      <li class="active"><a href="add-category.php">Add Category</a></li>
+      <li><a href="add-category.php">Add Category</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php
@@ -55,20 +53,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </nav>
 
     <div class="container">
-            <form action="helpers/category-adder.php" method="post" accept-charset="UTF-8">
-                <h3>MatheMeister Add Category</h3>
-                <h4>Create a new MatheMeister category.</h4>
+            <form action="helpers/category-updater.php" method="post" accept-charset="UTF-8">
+                <h3>MatheMeister Edit Category</h3>
+                <h4>Edit a MatheMeister category.</h4>
 
                 <br>
                 <a class="btn btn-primary" href="view-categories.php" role="button">Back</a>
                 <br>
                 <br>
                 <fieldset>
-                    <input name="cat_name" placeholder="Category" type="text" tabindex="1" required autofocus>
+                    <input name="cat_name" placeholder="Category" value="<?php echo rawurldecode($_GET['cat_name']); ?>" type="text" tabindex="1" required autofocus>
                 </fieldset>
+                <input type="hidden" name="cat_id" value="<?php echo rawurldecode($_GET['cat_id']); ?>">
                 <br>
                 <fieldset>
-                    <button class="btn btn-primary" name="submit" type="submit" id="contact-submit" data-submit="...Sending" value="addCategory">Add Category</button>
+                    <button class="btn btn-primary" name="submit" type="submit" id="contact-submit" data-submit="...Sending" value="addCategory">Save</button>
                 </fieldset>
                 <span><br><br><?php echo $err; ?></span>
             </form>

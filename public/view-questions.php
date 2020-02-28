@@ -26,6 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script src="js/deleteQuestion.js"></script>
+        <script src="js/editQuestion.js"></script>
 
     </head>
     <body>
@@ -70,6 +71,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <tr>
                 <th>ID</th>
                 <th>Level</th>
+                <th>Category</th>
                 <th>Question</th>
                 <th>Correct answer</th>
                 <th>Wrong answer 1</th>
@@ -88,9 +90,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 
                 while($question = mysqli_fetch_array($result))
                 {
+                
+                $catSth = sprintf("SELECT cat_name FROM mm_category WHERE cat_id = '%s'", $question['que_catId']);
+                $catRes = $conn->query($catSth);
+                $catRow = $catRes->fetch_assoc();
+
                 $id = $question['id']; 
                 echo"<td>".$question['que_id']."</td>";
                 echo"<td>".$question['que_level']."</td>";
+                echo"<td>".$catRow['cat_name']."</td>";
                 echo"<td>".$question['que_question']."</td>";
                 echo"<td>".$question['que_correctAnswer']."</td>";
                 echo"<td>".$question['que_wrongAnswerOne']."</td>"; 
@@ -98,7 +106,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 echo"<td>".$question['que_wrongAnswerThree']."</td>";
                 $questionId = $question['que_id'];
                 $questionString = "\"".$question['que_question']."\"";
-                echo"<td><button class='btn btn-primary' type='submit' onclick='deleteQuestion(".$questionId.", ".$questionString.");'>Delete</button></td>";
+                echo"<td><button class='btn btn-primary' type='submit' onclick='editQuestion(\"".$question['que_id']."\", \"".$question['que_level']."\", \"".$catRow['cat_name']."\", \"".$question['que_question']."\", \"".$question['que_correctAnswer']."\", \"".$question['que_wrongAnswerOne']."\", \"".$question['que_wrongAnswerTwo']."\", \"".$question['que_wrongAnswerThree']."\");'>Edit</button> <button class='btn btn-primary' type='submit' onclick='deleteQuestion(".$questionId.", ".$questionString.");'>Delete</button> </td>";
                 echo "</tr>";
                 }
                 mysqli_close($conn);
