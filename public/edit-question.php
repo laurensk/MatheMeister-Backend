@@ -55,7 +55,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         <div class="container">
             <form action="helpers/question-updater.php" method="post" accept-charset="UTF-8">
-                <h3>MatheMeister Edit Questions</h3>
+                <h3>MatheMeister Edit Question</h3>
                 <h4>Edit a MatheMeister question.</h4>
 
                 <br>

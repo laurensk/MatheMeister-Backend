@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="de">
     <head>
-                <title>MatheMeister Backend Login</title>
+                <title>MatheMeister Login</title>
                 <meta charset="utf-8">
                 <link rel="stylesheet" href="/css/global.css">
                 <link rel="stylesheet" href="/css/login.css">

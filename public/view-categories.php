@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <title>MatheMeister</title>
+        <title>MatheMeister Categories</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/view-questions.css">
