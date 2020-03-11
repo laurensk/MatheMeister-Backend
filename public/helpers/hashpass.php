@@ -6,7 +6,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$password = $_REQUEST['password'];
+$password = $_GET['password'];
 echo password_hash($password, PASSWORD_DEFAULT);
 
-?>
+?> 
