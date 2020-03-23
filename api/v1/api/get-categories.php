@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
         $qcRes = $conn->query($qcSth);
 
         // append question count to array
-        $r["cat_qc"] = $qcRes->num_rows;
+        $r["cat_qc"] = strval($qcRes->num_rows);
 
         $rows[] = $r;
     }
