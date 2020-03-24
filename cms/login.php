@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($username_err) && empty($password_err)){
         
-        $sql = "SELECT use_id, use_username, use_fullname, use_password FROM `mm_users` WHERE use_username = ?";
+        $sql = "SELECT use_id, use_username, use_fullname, use_password, use_id FROM `mm_users` WHERE use_username = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             
@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){                  
                     
-                    mysqli_stmt_bind_result($stmt, $id, $username, $fullname, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $fullname, $hashed_password, $uuid);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             
@@ -58,7 +58,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;  
-                            $_SESSION["fullname"] = $fullname;                          
+                            $_SESSION["fullname"] = $fullname;
+                            $_SESSION["uuid"] = $uuid;
                             
                             header("location: view-questions.php");
                         } else{
@@ -132,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 <div class="container">  
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                      <h3>MatheMeister Backend Login</h3>
+                      <h3>MatheMeister CMS Login</h3>
                       <h4>Please log in to manage MatheMeister.</h4>
                       <br>
                       <fieldset>

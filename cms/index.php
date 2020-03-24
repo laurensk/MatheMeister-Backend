@@ -49,10 +49,10 @@ session_start();
     </nav>
 
         <div class="container">
-            <h3>Home sweet home...</h3>
-            <h4>If you want to use the MatheMeister-App, you're kinda not right here... Sorry!</h4>
+            <h3>MatheMeister Content Management Systems</h3>
+            <h4>Manage questions and categories for the MatheMeister app.</h4>
             <?php if($_SESSION["loggedin"] !== true) {
-                echo '<br><h3>Please log in in order to manage MatheMeister.</h3><h4>Development creadentials: dev/nrlly</h4>';
+                echo '<br><h3>Please log in in order to manage MatheMeister.</h3><h4>Click the login button in the menu bar.</h4>';
             } ?>
         </div>
     </body>
