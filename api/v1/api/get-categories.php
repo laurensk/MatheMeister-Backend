@@ -25,8 +25,7 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo_util($rows);
 } else {
-    http_response_code(701);
-    echo_util(http_response_code().": 0 results");
+    error_util(701, "0 results");
 }
 
 exit;
