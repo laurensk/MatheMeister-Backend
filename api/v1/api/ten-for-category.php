@@ -40,7 +40,8 @@ if (mysqli_num_rows($result) >= 10) {
     }
     echo_util($rows);
 } else {
-    echo_util("not enough questions");
+    http_response_code(701);
+    echo_util(http_response_code(701).": not enough questions");
 }
 
 exit;
