@@ -10,7 +10,7 @@ $catId = $data["catId"];
 $answeredQuestionIds = $data["answeredQuestionIds"];
 
 if(empty(trim($catId))) {
-    echo_util("error: not all information given");
+    error_util(601, "not all information given");
     $conn->close();
     exit;
 }

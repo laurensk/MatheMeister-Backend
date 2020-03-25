@@ -30,7 +30,7 @@ switch($action) {
 }
 
 function noActionGiven($conn) {
-    echo_util("invalid action given");
+    error_util(600, "invalid action given");
     $conn->close();
     exit;
 }
